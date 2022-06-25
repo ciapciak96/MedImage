@@ -8,10 +8,11 @@
         <attribute name="date" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
         <attribute name="name" attributeType="String"/>
         <attribute name="photo" attributeType="String" customClassName="UIImage"/>
+        <attribute name="text" optional="YES" attributeType="String"/>
         <relationship name="folder" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Folder" inverseName="pictures" inverseEntity="Folder"/>
     </entity>
     <elements>
-        <element name="Image" positionX="-63" positionY="-18" width="128" height="89"/>
         <element name="Folder" positionX="-54" positionY="18" width="128" height="59"/>
+        <element name="Image" positionX="-63" positionY="-18" width="128" height="104"/>
     </elements>
 </model>

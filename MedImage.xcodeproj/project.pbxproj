@@ -73,8 +73,8 @@
 			children = (
 				E4B1FD2B285BC97F0067218E /* MainViewController.swift */,
 				E4AA349D285BCCA900954F0A /* DocumentsViewController.swift */,
-				E4AA349F285BCCC300954F0A /* PreviewViewController.swift */,
 				E4AA34A1285BCE2800954F0A /* NewImageViewController.swift */,
+				E4AA349F285BCCC300954F0A /* PreviewViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";

@@ -19,6 +19,7 @@ extension Image {
     @NSManaged public var name: String?
     @NSManaged public var photo: String?
     @NSManaged public var date: Date?
+    @NSManaged public var text: String?
     @NSManaged public var folder: Folder?
 
 }

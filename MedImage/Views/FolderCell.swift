@@ -11,21 +11,23 @@ class FolderCell: UICollectionViewCell {
     
     static let identifier = "FolderCell"
     
-    private let folderName: UILabel = {
+     let folderName: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.numberOfLines = 0
-        label.text = "Very long text to check the label"
-        label.font = .systemFont(ofSize: 12, weight: .medium)
+        
+        label.font = .systemFont(ofSize: 15, weight: .medium)
         label.textColor = .black.withAlphaComponent(0.8)
         return label
     }()
     
-    private let folderImage: UIImageView = {
+     let folderImage: UIImageView = {
         let image = UIImageView()
         image.translatesAutoresizingMaskIntoConstraints = false
-        image.backgroundColor = .systemPink
+        //image.backgroundColor = .systemPink
         image.layer.cornerRadius = 10
+        image.contentMode = .scaleAspectFit
+        image.image = UIImage(systemName: "folder.fill")?.withTintColor(.systemGray2, renderingMode: .alwaysOriginal)
         return image
     }()
     
@@ -39,6 +41,7 @@ class FolderCell: UICollectionViewCell {
     }
     
     
+    
     func addSubViewsAndLayout() {
         contentView.addSubview(folderName)
         contentView.addSubview(folderImage)
@@ -49,8 +52,8 @@ class FolderCell: UICollectionViewCell {
         folderImage.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -50).isActive = true
         
         folderName.topAnchor.constraint(equalTo: folderImage.bottomAnchor, constant: 2).isActive = true
-        folderName.rightAnchor.constraint(equalTo: contentView.rightAnchor, constant: -10).isActive = true
-        folderName.leftAnchor.constraint(equalTo: contentView.leftAnchor, constant: 10).isActive = true
+        folderName.rightAnchor.constraint(equalTo: contentView.rightAnchor, constant: -13).isActive = true
+        folderName.leftAnchor.constraint(equalTo: contentView.leftAnchor, constant: 13).isActive = true
         folderName.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -10).isActive = true
     }
 }
