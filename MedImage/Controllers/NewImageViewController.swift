@@ -24,7 +24,9 @@ class NewImageViewController: UIViewController, UIImagePickerControllerDelegate 
     let datePicker = UIDatePicker()
     var imgUUID: String?
     
+    
     let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
+  
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -38,6 +40,7 @@ class NewImageViewController: UIViewController, UIImagePickerControllerDelegate 
         setDatePicker()
     }
 
+    
     @IBAction func openCamera(_ sender: Any) {
         let picker = UIImagePickerController()
         if UIImagePickerController.isSourceTypeAvailable(.camera) {
@@ -64,7 +67,7 @@ class NewImageViewController: UIViewController, UIImagePickerControllerDelegate 
         let date = datePicker.date
         print(dateString)
         print(imgUUID)
-        weak var vc = storyboard?.instantiateViewController(withIdentifier: "DocumentsViewController") as! DocumentsViewController
+       weak var vc = storyboard?.instantiateViewController(withIdentifier: "DocumentsViewController") as! DocumentsViewController
         guard let title = titleTextField.text, !title.isEmpty else {
             let acTitle = UIAlertController(title: "No title!", message: "Please add a title and continue", preferredStyle: .alert)
             acTitle.addAction(UIAlertAction(title: "OK", style: .cancel))
@@ -74,24 +77,41 @@ class NewImageViewController: UIViewController, UIImagePickerControllerDelegate 
         guard let path = imgUUID else {
             return
         }
-        let newImage = returnImage(date: date, name: title, uuid: path, description: descriptionTextView.text)
-        vc?.pictures.insert(newImage, at: 0)
-        
+        let newImage = returnImage(date: date, name: title, uuid: path, description: descriptionTextView.text, folder: folder!)
+        do {
+           try context.save()
+            print("Image saved successfully")
+            print(folder?.pictures)
+        } catch {
+            print("Could not save")
+        }
+        let indexPath = IndexPath(row: 0, section: 0)
+        //globalTableView!.insertRows(at: [indexPath], with: .automatic)
+        vc?.documentsTableView = globalTableView
+       // vc.documentsTableView.reloadData()
+        filteredData.insert(newImage, at: 0)
+        fetchImagesFromDisk(fileName: newImage.photo!) { image in
+            filteredPictures.insert(image, at: 0)
+        }
+       // vc?.documentsTableView.reloadData()
+        vc?.documentsTableView.beginUpdates()
+        vc?.documentsTableView.insertRows(at: [indexPath], with: .automatic)
+        vc?.documentsTableView.endUpdates()
+        dismiss(animated: true)
+        //vc?.documentsTableView.insertRows(at: [indexPath], with: .automatic)
     }
     
-    func returnImage(date: Date, name: String, uuid: String, description: String) -> Image {
+    func returnImage(date: Date, name: String, uuid: String, description: String, folder: Folder) -> Image {
         let img = Image(context: context)
         img.date = date
         img.name = name
         img.photo = uuid
         img.text = description
+        img.folder = folder
         return img
     }
     
-    func getDocumentsDirectory() -> URL {
-        let paths = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
-        return paths[0]
-    }
+    
     
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         guard let image = info[.editedImage] as? UIImage else {return}
@@ -103,7 +123,7 @@ class NewImageViewController: UIViewController, UIImagePickerControllerDelegate 
             try? jpegData.write(to: imagePath)
         }
         imagePreview.image = info[UIImagePickerController.InfoKey.editedImage] as? UIImage
-        imgUUID = imagePath.absoluteString
+        imgUUID = imageName
         dismiss(animated: true)
     }
     
@@ -156,6 +176,9 @@ class NewImageViewController: UIViewController, UIImagePickerControllerDelegate 
 //        saveButton.topAnchor.constraint(equalTo: descriptionTextView.bottomAnchor, constant: 30).isActive = true
 //        saveButton.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 25).isActive = true
 //        saveButton.
+        
+        saveButton.topAnchor.constraint(equalTo: view.layoutMarginsGuide.topAnchor, constant: 50).isActive = true
+        saveButton.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 2).isActive = true
     }
     
     func setLabels() {

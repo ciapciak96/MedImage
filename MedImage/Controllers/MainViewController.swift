@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import CoreData
 
 class MainViewController: UIViewController {
 
@@ -78,6 +79,19 @@ class MainViewController: UIViewController {
         }
     }
     
+    func fetchObjectsFromFolder(folder: Folder) -> [Image] {
+        let request: NSFetchRequest<Image> = Image.fetchRequest()
+        request.predicate = NSPredicate(format: "folder = %@", folder)
+       // request.sortDescriptors = [NSSortDescriptor(key: "timestamp", ascending: false)]
+        var fetched: [Image] = []
+        do {
+            fetched = try context.fetch(request)
+        } catch {
+            print("Could not fetch Images")
+        }
+        return fetched
+    }
+    
     @objc func addFolder() {
         let ac = UIAlertController(title: "Create new folder", message: nil, preferredStyle: .alert)
         ac.addTextField()
@@ -123,11 +137,16 @@ extension MainViewController: UICollectionViewDelegate, UICollectionViewDataSour
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let vc = storyboard?.instantiateViewController(withIdentifier: "DocumentsViewController") as! DocumentsViewController
         vc.title = folders[indexPath.row].name
-        if let allPictures = folders[indexPath.row].pictures?.allObjects as? [Image] {
-            vc.folder = folders[indexPath.row]
-            vc.pictures = allPictures
-            print(allPictures.count)
-        }
+        
+        filteredData = fetchObjectsFromFolder(folder: folders[indexPath.row])
+        pictures = filteredData
+        folder = folders[indexPath.row]
+//        if let allPictures = folders[indexPath.row].pictures?.allObjects as? [Image] {
+//            folder = folders[indexPath.row]
+//            pictures = allPictures
+//            filteredData = allPictures
+//            print(allPictures.count)
+//        }
         navigationController?.pushViewController(vc, animated: true)
         
     }

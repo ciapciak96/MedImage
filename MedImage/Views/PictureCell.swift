@@ -11,14 +11,14 @@ class PictureCell: UITableViewCell {
     
     static let identifier = "PictureCell"
 
-    let documentImageView: UIImageView = {
+    var documentImageView: UIImageView = {
         let documentImage = UIImageView()
         documentImage.translatesAutoresizingMaskIntoConstraints = false
         documentImage.backgroundColor = .systemPink
         return documentImage
     }()
     
-    let documentName: UILabel = {
+    var documentName: UILabel = {
         let name = UILabel()
         name.translatesAutoresizingMaskIntoConstraints = false
         name.text = "Name of the document"
