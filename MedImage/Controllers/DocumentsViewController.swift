@@ -15,7 +15,8 @@ class DocumentsViewController: UIViewController {
     
     let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
     
-    
+    var sorted: Bool = false
+    var sortButton: UIBarButtonItem?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -31,7 +32,11 @@ class DocumentsViewController: UIViewController {
         
         documentsTableView.register(PictureCell.self, forCellReuseIdentifier: "PictureCell")
         
-        navigationItem.rightBarButtonItems = [UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addPicture)), UIBarButtonItem(title: "Sort by date", style: .done, target: self, action: #selector(sortByDate))]
+        sortButton = UIBarButtonItem(title: "Sort by date", style: .done, target: self, action: #selector(sortByDate))
+        
+       
+        
+        navigationItem.rightBarButtonItems = [UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addPicture)), sortButton!]
         
         setTableView()
         
@@ -67,15 +72,28 @@ class DocumentsViewController: UIViewController {
     
     @objc func sortByDate() {
         filteredPictures = []
-       
-        filteredData = filteredData.sorted(by: {
-            $0.date!.compare($1.date!) == .orderedDescending })
+        
+        
+        if sorted == false {
+            filteredData = filteredData.sorted(by: {
+                $0.date!.compare($1.date!) == .orderedDescending })
+            sortButton?.title = "Reset"
+        } else {
+            filteredData = filteredData.sorted(by: {
+                $0.timestamp!.compare($1.timestamp!) == .orderedDescending
+            })
+            sortButton?.title = "Sort by date"
+        }
+        sorted = !sorted
+        
         for date in filteredData {
             fetchImagesFromDisk(fileName: date.photo!) { image in
                 filteredPictures.append(image)
             }
             
         }
+        
+        
         
         documentsTableView.reloadData()
 }

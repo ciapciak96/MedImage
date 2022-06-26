@@ -77,7 +77,7 @@ class NewImageViewController: UIViewController, UIImagePickerControllerDelegate 
         guard let path = imgUUID else {
             return
         }
-        let newImage = returnImage(date: date, name: title, uuid: path, description: descriptionTextView.text, folder: folder!)
+        let newImage = returnImage(date: date, timestamp: Date(), name: title, uuid: path, description: descriptionTextView.text, folder: folder!)
         do {
            try context.save()
             print("Image saved successfully")
@@ -101,9 +101,10 @@ class NewImageViewController: UIViewController, UIImagePickerControllerDelegate 
         //vc?.documentsTableView.insertRows(at: [indexPath], with: .automatic)
     }
     
-    func returnImage(date: Date, name: String, uuid: String, description: String, folder: Folder) -> Image {
+    func returnImage(date: Date, timestamp: Date, name: String, uuid: String, description: String, folder: Folder) -> Image {
         let img = Image(context: context)
         img.date = date
+        img.timestamp = timestamp
         img.name = name
         img.photo = uuid
         img.text = description

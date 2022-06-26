@@ -82,10 +82,11 @@ class MainViewController: UIViewController {
     func fetchObjectsFromFolder(folder: Folder) -> [Image] {
         let request: NSFetchRequest<Image> = Image.fetchRequest()
         request.predicate = NSPredicate(format: "folder = %@", folder)
-       // request.sortDescriptors = [NSSortDescriptor(key: "timestamp", ascending: false)]
+        request.sortDescriptors = [NSSortDescriptor(key: "timestamp", ascending: false)]
         var fetched: [Image] = []
         do {
             fetched = try context.fetch(request)
+            print(fetched[0].timestamp)
         } catch {
             print("Could not fetch Images")
         }

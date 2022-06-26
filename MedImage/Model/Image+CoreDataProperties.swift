@@ -16,6 +16,7 @@ extension Image {
         return NSFetchRequest<Image>(entityName: "Image")
     }
 
+    @NSManaged public var timestamp: Date?
     @NSManaged public var name: String?
     @NSManaged public var photo: String?
     @NSManaged public var date: Date?
