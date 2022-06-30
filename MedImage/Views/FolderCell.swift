@@ -11,13 +11,24 @@ class FolderCell: UICollectionViewCell {
     
     static let identifier = "FolderCell"
     
+    var isInEditingMode = false 
+    
+//    override var isSelected: Bool {
+//        didSet {
+//            if isInEditingMode {
+//                folderImage.image = isSelected ? UIImage(systemName: "trash")?.withTintColor(.red, renderingMode: .alwaysOriginal) : UIImage(systemName: "trash")?.withTintColor(.blue, renderingMode: .alwaysOriginal)
+//                
+//            }
+//        }
+//    }
+    
      let folderName: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.numberOfLines = 0
         
-        label.font = .systemFont(ofSize: 15, weight: .medium)
-        label.textColor = .black.withAlphaComponent(0.8)
+         label.font = .systemFont(ofSize: 15, weight: .regular)
+         label.textColor = UIColor(named: "mainColor")?.withAlphaComponent(0.9)
         return label
     }()
     
@@ -27,9 +38,16 @@ class FolderCell: UICollectionViewCell {
         //image.backgroundColor = .systemPink
         image.layer.cornerRadius = 10
         image.contentMode = .scaleAspectFit
-        image.image = UIImage(systemName: "folder.fill")?.withTintColor(.systemGray2, renderingMode: .alwaysOriginal)
+         image.image = UIImage(systemName: "folder.fill")?.withTintColor(.systemGray2.withAlphaComponent(0.5), renderingMode: .alwaysOriginal)
         return image
     }()
+    
+//    let checkmarkLabel: UILabel = {
+//        let checkmark = UILabel()
+//        checkmark.text = "✔"
+//        checkmark
+//        return checkmark
+//    }()
     
     override init(frame: CGRect) {
         super.init(frame: frame)

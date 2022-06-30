@@ -21,16 +21,29 @@ class PictureCell: UITableViewCell {
     var documentName: UILabel = {
         let name = UILabel()
         name.translatesAutoresizingMaskIntoConstraints = false
-        name.text = "Name of the document"
-        name.font = UIFont.systemFont(ofSize: 13)
-        name.textColor = .black.withAlphaComponent(0.8)
+        name.font = UIFont.systemFont(ofSize: 19)
+        name.textColor = UIColor(named: "mainColor")!.withAlphaComponent(0.9)
+        name.numberOfLines = 0
+        name.minimumScaleFactor = 0.3
+        name.adjustsFontSizeToFitWidth = true
+        
         return name
+    }()
+    
+    var dateLabel: UILabel = {
+        let date = UILabel()
+        date.text = "test"
+        date.translatesAutoresizingMaskIntoConstraints = false
+        date.font = UIFont.systemFont(ofSize: 13)
+        date.textColor = .systemGray
+        return date
     }()
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         setDocumentImage()
         setDocumentName()
+        setDateLabel()
     }
     
     required init?(coder: NSCoder) {
@@ -44,16 +57,25 @@ class PictureCell: UITableViewCell {
         documentImageView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -10).isActive = true
         documentImageView.leftAnchor.constraint(equalTo: contentView.leftAnchor, constant: 30).isActive = true
         documentImageView.widthAnchor.constraint(equalTo: contentView.widthAnchor, multiplier: 0.25).isActive = true
+        
+        documentImageView.contentMode = .scaleAspectFill
+        documentImageView.clipsToBounds = true
     }
     
     func setDocumentName() {
         contentView.addSubview(documentName)
-        
-        documentName.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 40).isActive = true
-        documentName.leftAnchor.constraint(equalTo: documentImageView.rightAnchor, constant: 10).isActive = true
-        documentName.heightAnchor.constraint(equalToConstant: 15).isActive = true
+
+        documentName.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 20).isActive = true
+        documentName.leftAnchor.constraint(equalTo: documentImageView.rightAnchor, constant: 20).isActive = true
         documentName.rightAnchor.constraint(equalTo: contentView.rightAnchor, constant: 15).isActive = true
+        
     }
     
+    func setDateLabel() {
+        contentView.addSubview(dateLabel)
+       
+        dateLabel.topAnchor.constraint(equalTo: documentName.bottomAnchor, constant: 10).isActive = true
+        dateLabel.leftAnchor.constraint(equalTo: documentImageView.rightAnchor, constant: 20).isActive = true
+    }
     
     }

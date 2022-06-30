@@ -13,6 +13,19 @@ class MainViewController: UIViewController {
     @IBOutlet weak var collectionView: UICollectionView!
     
     var folders = [Folder]()
+    var trashButton: UIBarButtonItem?
+    var addButton: UIBarButtonItem?
+    var editingStatus = false {
+        didSet {
+            if editingStatus == false {
+                trashButton?.isEnabled = false
+                addButton?.isEnabled = true
+            } else {
+                addButton?.isEnabled = false
+            }
+        }
+    }
+    
     
     let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
     
@@ -26,14 +39,17 @@ class MainViewController: UIViewController {
         setAddButton()
         
         fetchFolders()
+        
+        navigationItem.leftBarButtonItem = editButtonItem
+
+        navigationController?.navigationBar.largeTitleTextAttributes = [.foregroundColor: UIColor.systemPink]
     }
     
-    
-    
     func setAddButton() {
-        let addButton = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addFolder))
-        navigationItem.rightBarButtonItem = addButton
-        
+        trashButton = UIBarButtonItem(image: UIImage(systemName: "trash"), style: .done, target: self, action: #selector(deleteFolders))
+        trashButton?.isEnabled = false
+        addButton = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addFolder))
+        navigationItem.rightBarButtonItems = [addButton!, trashButton!]
     }
     
     func setLayout() {
@@ -60,7 +76,6 @@ class MainViewController: UIViewController {
         collectionView.insertItems(at: [indexPath])
         do {
           try context.save()
-            print("Folder saved")
         } catch {
             print("Could not save new folder")
         }
@@ -86,7 +101,6 @@ class MainViewController: UIViewController {
         var fetched: [Image] = []
         do {
             fetched = try context.fetch(request)
-            print(fetched[0].timestamp)
         } catch {
             print("Could not fetch Images")
         }
@@ -106,6 +120,27 @@ class MainViewController: UIViewController {
         
         present(ac, animated: true)
     }
+    
+    @objc func deleteFolders() {
+        if let selectedCells = collectionView.indexPathsForSelectedItems {
+            let items = selectedCells.map { $0.item }.sorted().reversed()
+            for cell in items {
+                let deletedFolder = folders[cell]
+                folders.remove(at: cell)
+                context.delete(deletedFolder)
+                do {
+                    try context.save()
+                } catch {
+                    print("Could not delete folders and save the changes")
+                }
+            }
+            collectionView.deleteItems(at: selectedCells)
+            guard let trashButton = trashButton else {
+                return
+            }
+            trashButton.isEnabled = false
+        }
+    }
 
 }
 
@@ -115,43 +150,82 @@ extension MainViewController: UICollectionViewDelegate, UICollectionViewDataSour
         return folders.count
     }
     
+    override func setEditing(_ editing: Bool, animated: Bool) {
+        super.setEditing(editing, animated: animated)
+        editingStatus = editing
+       
+        collectionView.allowsMultipleSelection = editing
+        collectionView.indexPathsForSelectedItems?.forEach({ (indexPath) in
+            collectionView.deselectItem(at: indexPath, animated: false)
+        })
+        collectionView.indexPathsForVisibleItems.forEach { (indexPath) in
+            let cell = collectionView.cellForItem(at: indexPath) as! FolderCell
+            cell.isInEditingMode = editing
+            cell.backgroundColor = .cyan
+        }
+       
+        collectionView.reloadData()
+    }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "FolderCell", for: indexPath) as! FolderCell
         
-        cell.backgroundColor = .systemBackground
+        cell.backgroundColor = .systemGray6
         cell.layer.cornerRadius = 10
         
-        cell.layer.shadowRadius = 20
+        cell.layer.shadowRadius = 10
         cell.layer.shadowOffset = CGSize(width: 5, height: 5)
         cell.layer.shadowColor = UIColor.systemGray.cgColor
         cell.layer.shadowOpacity = 0.3
         
         cell.layer.masksToBounds = false
         
+        cell.isInEditingMode = isEditing
+
         cell.folderName.text = folders[indexPath.row].name
                                          
         return cell
-    
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        guard let trashButton = trashButton else {
+            return
+        }
+        
+        if !isEditing {
+                trashButton.isEnabled = false
+        } else {
+                trashButton.isEnabled = true
+                if let cell = collectionView.cellForItem(at: indexPath) as? FolderCell {
+                    cell.layer.shadowOpacity = 0
+                    cell.backgroundColor = .systemGray5
+                    }
+                return
+            }
+
         let vc = storyboard?.instantiateViewController(withIdentifier: "DocumentsViewController") as! DocumentsViewController
         vc.title = folders[indexPath.row].name
         
-        filteredData = fetchObjectsFromFolder(folder: folders[indexPath.row])
-        pictures = filteredData
-        folder = folders[indexPath.row]
-//        if let allPictures = folders[indexPath.row].pictures?.allObjects as? [Image] {
-//            folder = folders[indexPath.row]
-//            pictures = allPictures
-//            filteredData = allPictures
-//            print(allPictures.count)
-//        }
+        Fetched.filteredData = fetchObjectsFromFolder(folder: folders[indexPath.row])
+        Fetched.pictures = Fetched.filteredData
+        Fetched.folder = folders[indexPath.row]
+
         navigationController?.pushViewController(vc, animated: true)
-        
     }
     
-
+    func collectionView(_ collectionView: UICollectionView, didDeselectItemAt indexPath: IndexPath) {
+        if let selectedItems = collectionView.indexPathsForSelectedItems, selectedItems.count == 0 {
+            guard let trashButton = trashButton else {
+                return
+            }
+            trashButton.isEnabled = false
+        }
+        if isEditing {
+            if let cell = collectionView.cellForItem(at: indexPath) as? FolderCell {
+                cell.backgroundColor = .systemGray6
+                cell.layer.shadowOpacity = 0.3
+                }
+        }
+    }
     
 }
