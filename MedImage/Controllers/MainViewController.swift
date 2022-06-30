@@ -26,9 +26,15 @@ class MainViewController: UIViewController {
         }
     }
     
-    
     let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        navigationController?.navigationBar.prefersLargeTitles = true
+        navigationItem.largeTitleDisplayMode =  .always
+        
+    }
     override func viewDidLoad() {
         super.viewDidLoad()
         

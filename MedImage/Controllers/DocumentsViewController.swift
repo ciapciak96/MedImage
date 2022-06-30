@@ -18,6 +18,7 @@ class DocumentsViewController: UIViewController {
     var sorted: Bool = false
     var sortButton: UIBarButtonItem?
 
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -125,7 +126,7 @@ extension DocumentsViewController: UITableViewDelegate, UITableViewDataSource {
         let vc = storyboard?.instantiateViewController(withIdentifier: "PreviewViewController") as! PreviewViewController
         navigationController?.pushViewController(vc, animated: true)
         vc.selectedImage = Fetched.filteredData[indexPath.row]
-        vc.title = Fetched.filteredData[indexPath.row].name
+        //vc.titleLabel.text = Fetched.filteredData[indexPath.row].name
 
         tableView.deselectRow(at: indexPath, animated: true)
     

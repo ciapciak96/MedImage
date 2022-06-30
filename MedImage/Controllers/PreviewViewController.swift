@@ -11,6 +11,8 @@ class PreviewViewController: UIViewController {
 
     @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var contentView: UIView!
+    
+    @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var previewImageView: UIImageView!
     @IBOutlet weak var dateLabel: UILabel!
     @IBOutlet weak var descriptionLabel: UILabel!
@@ -21,10 +23,12 @@ class PreviewViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+
         
         setDateLabel()
         setPreviewImageView()
         setDescriptionLabelandTextView()
+        setTitleLabel()
 
         navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .action, target: self, action: #selector(sharePicture))
         
@@ -40,14 +44,26 @@ class PreviewViewController: UIViewController {
         }
     }
     
+    func setTitleLabel() {
+        titleLabel.translatesAutoresizingMaskIntoConstraints = false
+        
+        titleLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 10).isActive = true
+        titleLabel.widthAnchor.constraint(equalTo: contentView.widthAnchor, multiplier: 0.9).isActive = true
+        titleLabel.centerXAnchor.constraint(equalTo: contentView.centerXAnchor).isActive = true
+        titleLabel.text = selectedImage?.name
+        titleLabel.font = UIFont.systemFont(ofSize: 25, weight: .heavy)
+        titleLabel.textColor = UIColor.systemPink
+        titleLabel.numberOfLines = 0
+    }
     
     func setPreviewImageView() {
         previewImageView.translatesAutoresizingMaskIntoConstraints = false
 
-        previewImageView.topAnchor.constraint(equalTo: contentView.layoutMarginsGuide.topAnchor, constant: 5).isActive = true
+        previewImageView.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 30).isActive = true
         previewImageView.widthAnchor.constraint(equalTo: contentView.widthAnchor, multiplier: 0.8).isActive = true
         previewImageView.heightAnchor.constraint(equalTo: contentView.heightAnchor, multiplier: 0.5).isActive = true
         previewImageView.centerXAnchor.constraint(equalTo: contentView.centerXAnchor).isActive = true
+  
     }
     
     func setDateLabel() {

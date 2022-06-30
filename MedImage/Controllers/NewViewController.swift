@@ -31,8 +31,13 @@ class NewViewController: UIViewController, UITextFieldDelegate, UITextViewDelega
     
     let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
     
-    
-    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        navigationController?.navigationBar.prefersLargeTitles = true
+        navigationItem.largeTitleDisplayMode =  .always
+        
+    }
     override func viewDidLoad() {
         super.viewDidLoad()
         registerForKeyboardNotifications()
@@ -211,7 +216,7 @@ class NewViewController: UIViewController, UITextFieldDelegate, UITextViewDelega
         titleLabel.leftAnchor.constraint(equalTo: contentView.leftAnchor, constant: 25).isActive = true
         titleLabel.topAnchor.constraint(equalTo: cameraButton.bottomAnchor, constant: 60).isActive = true
 
-        descriptionLabel.text = "Description"
+        descriptionLabel.text = "Description (optional)"
         descriptionLabel.font = UIFont.systemFont(ofSize: 18, weight: .medium)
         descriptionLabel.textColor = UIColor(named: "mainColor")
         
@@ -264,6 +269,7 @@ class NewViewController: UIViewController, UITextFieldDelegate, UITextViewDelega
         let midnightToday = Calendar.current.startOfDay(for: Date())
         datePicker.date = midnightToday
         datePicker.maximumDate = midnightToday
+        datePicker.datePickerMode = .date
         
         dateFormatter.dateStyle = .short
         dateFormatter.timeStyle = .short

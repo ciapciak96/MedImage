@@ -23,7 +23,7 @@ class PictureCell: UITableViewCell {
         name.translatesAutoresizingMaskIntoConstraints = false
         name.font = UIFont.systemFont(ofSize: 19)
         name.textColor = UIColor(named: "mainColor")!.withAlphaComponent(0.9)
-        name.numberOfLines = 0
+        name.numberOfLines = 3
         name.minimumScaleFactor = 0.3
         name.adjustsFontSizeToFitWidth = true
         
@@ -67,7 +67,7 @@ class PictureCell: UITableViewCell {
 
         documentName.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 20).isActive = true
         documentName.leftAnchor.constraint(equalTo: documentImageView.rightAnchor, constant: 20).isActive = true
-        documentName.rightAnchor.constraint(equalTo: contentView.rightAnchor, constant: 15).isActive = true
+        documentName.rightAnchor.constraint(equalTo: contentView.rightAnchor, constant: -10).isActive = true
         
     }
     

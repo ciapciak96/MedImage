@@ -12,15 +12,7 @@ class FolderCell: UICollectionViewCell {
     static let identifier = "FolderCell"
     
     var isInEditingMode = false 
-    
-//    override var isSelected: Bool {
-//        didSet {
-//            if isInEditingMode {
-//                folderImage.image = isSelected ? UIImage(systemName: "trash")?.withTintColor(.red, renderingMode: .alwaysOriginal) : UIImage(systemName: "trash")?.withTintColor(.blue, renderingMode: .alwaysOriginal)
-//                
-//            }
-//        }
-//    }
+
     
      let folderName: UILabel = {
         let label = UILabel()
