@@ -18,6 +18,10 @@ class DocumentsViewController: UIViewController {
     var sorted: Bool = false
     var sortButton: UIBarButtonItem?
 
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        documentsTableView.reloadData()
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()

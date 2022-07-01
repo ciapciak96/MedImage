@@ -18,20 +18,27 @@ class PreviewViewController: UIViewController {
     @IBOutlet weak var descriptionLabel: UILabel!
     @IBOutlet weak var descriptionTextView: UITextView!
     
+    var sendButton: UIBarButtonItem?
+    var renameButton: UIBarButtonItem?
+    
     var previewImage: UIImage?
     var selectedImage: Image?
+    
+    let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
         
+        
         setDateLabel()
         setPreviewImageView()
         setDescriptionLabelandTextView()
         setTitleLabel()
+        setBarButtons()
+        registerForKeyboardNotifications()
 
-        navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .action, target: self, action: #selector(sharePicture))
-        
         DispatchQueue.global().async {
             guard let selectedImage = self.selectedImage else {
                 return
@@ -44,6 +51,21 @@ class PreviewViewController: UIViewController {
         }
     }
     
+    override func viewDidDisappear(_ animated: Bool) {
+        selectedImage?.text = descriptionTextView.text
+        do {
+            try context.save()
+        } catch {
+            print(error.localizedDescription)
+        }
+    }
+    
+    func setBarButtons() {
+        renameButton = UIBarButtonItem(title: "Rename", style: .done, target: self, action: #selector(renameImage))
+        sendButton = UIBarButtonItem(barButtonSystemItem: .action, target: self, action: #selector(sharePicture))
+        navigationItem.rightBarButtonItems = [sendButton!, renameButton!]
+    }
+    
     func setTitleLabel() {
         titleLabel.translatesAutoresizingMaskIntoConstraints = false
         
@@ -54,6 +76,7 @@ class PreviewViewController: UIViewController {
         titleLabel.font = UIFont.systemFont(ofSize: 25, weight: .heavy)
         titleLabel.textColor = UIColor.systemPink
         titleLabel.numberOfLines = 0
+        
     }
     
     func setPreviewImageView() {
@@ -96,7 +119,7 @@ class PreviewViewController: UIViewController {
         descriptionLabel.topAnchor.constraint(equalTo: dateLabel.bottomAnchor, constant: 30).isActive = true
         
         descriptionTextView.text = selectedImage?.text
-        descriptionTextView.isEditable = false
+        descriptionTextView.isEditable = true
         descriptionTextView.font = UIFont.systemFont(ofSize: 18)
         descriptionTextView.textColor = UIColor(named: "mainColor")
         descriptionTextView.topAnchor.constraint(equalTo: descriptionLabel.bottomAnchor, constant: 5).isActive = true
@@ -104,6 +127,30 @@ class PreviewViewController: UIViewController {
         descriptionTextView.leftAnchor.constraint(equalTo: contentView.leftAnchor, constant: 25).isActive = true
         descriptionTextView.heightAnchor.constraint(equalTo: contentView.heightAnchor, multiplier: 0.2).isActive = true
     }
+    
+    func renameConfirm(_ name: String) {
+        selectedImage?.name = name
+        titleLabel.text = name
+        do {
+          try context.save()
+        } catch {
+            print("Could not save new folder")
+        }
+    }
+    
+    @objc func renameImage() {
+        let ac = UIAlertController(title: "Rename document", message: nil, preferredStyle: .alert)
+        ac.addTextField()
+        
+        let newName = UIAlertAction(title: "Rename", style: .default) { [weak ac, weak self] _ in
+            guard let name = ac?.textFields?[0].text else { return }
+            self?.renameConfirm(name) }
+        
+        ac.addAction(UIAlertAction(title: "Cancel", style: .cancel))
+        ac.addAction(newName)
+        
+        present(ac, animated: true)    }
+    
     
     @objc func sharePicture() {
         guard let image = previewImageView.image?.jpegData(compressionQuality: 0.8) else {
@@ -113,4 +160,31 @@ class PreviewViewController: UIViewController {
         vc.popoverPresentationController?.barButtonItem = navigationItem.rightBarButtonItem
         present(vc, animated: true)
     }
+    
+    func registerForKeyboardNotifications() {
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWasShown(_:)), name: UIResponder.keyboardDidShowNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillBeHidden(_:)), name: UIResponder.keyboardWillHideNotification, object: nil)
+    }
+    
+    @objc func keyboardWasShown(_ notification: NSNotification) {
+        guard let info = notification.userInfo, let keyboardFrameValue = info[UIResponder.keyboardFrameBeginUserInfoKey] as? NSValue else {
+            return
+        }
+        let keyboardFrame = keyboardFrameValue.cgRectValue
+        let keyboardSize = keyboardFrame.size
+        
+        let contentInsets = UIEdgeInsets(top: 0.0, left: 0.0, bottom: keyboardSize.height + 30, right: 0.0)
+        scrollView.contentInset = contentInsets
+        scrollView.scrollIndicatorInsets = contentInsets
+    }
+    
+    @objc func keyboardWillBeHidden(_ notification: NSNotification) {
+        let contentInsets = UIEdgeInsets.zero
+        scrollView.contentInset = contentInsets
+        scrollView.scrollIndicatorInsets = contentInsets
+    }
 }
+
+
+
+
