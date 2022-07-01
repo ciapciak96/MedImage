@@ -25,6 +25,7 @@ class DocumentsViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        searchBar.enablesReturnKeyAutomatically = false
         
         Fetched.filteredPictures = []
         Fetched.fetchedPictures = []

@@ -31,7 +31,7 @@ class PreviewViewController: UIViewController {
         super.viewDidLoad()
 
         
-        
+        hideKeyboardWhenTapped()
         setDateLabel()
         setPreviewImageView()
         setDescriptionLabelandTextView()
@@ -69,7 +69,7 @@ class PreviewViewController: UIViewController {
     func setTitleLabel() {
         titleLabel.translatesAutoresizingMaskIntoConstraints = false
         
-        titleLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 10).isActive = true
+        titleLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 30).isActive = true
         titleLabel.widthAnchor.constraint(equalTo: contentView.widthAnchor, multiplier: 0.9).isActive = true
         titleLabel.centerXAnchor.constraint(equalTo: contentView.centerXAnchor).isActive = true
         titleLabel.text = selectedImage?.name
@@ -82,7 +82,7 @@ class PreviewViewController: UIViewController {
     func setPreviewImageView() {
         previewImageView.translatesAutoresizingMaskIntoConstraints = false
 
-        previewImageView.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 30).isActive = true
+        previewImageView.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 15).isActive = true
         previewImageView.widthAnchor.constraint(equalTo: contentView.widthAnchor, multiplier: 0.8).isActive = true
         previewImageView.heightAnchor.constraint(equalTo: contentView.heightAnchor, multiplier: 0.5).isActive = true
         previewImageView.centerXAnchor.constraint(equalTo: contentView.centerXAnchor).isActive = true
@@ -102,8 +102,8 @@ class PreviewViewController: UIViewController {
         dateLabel.textColor = .systemGray
         dateLabel.font = UIFont.systemFont(ofSize: 18, weight: .medium)
         
-        dateLabel.topAnchor.constraint(equalTo: previewImageView.bottomAnchor, constant: 20).isActive = true
-        dateLabel.leftAnchor.constraint(equalTo: contentView.leftAnchor, constant: 35).isActive = true
+        dateLabel.topAnchor.constraint(equalTo: previewImageView.bottomAnchor, constant: 30).isActive = true
+        dateLabel.leftAnchor.constraint(equalTo: contentView.leftAnchor, constant: 25).isActive = true
         
         
     }

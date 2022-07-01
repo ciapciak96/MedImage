@@ -8,7 +8,7 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Your folders-->
+        <!--Your medical folders-->
         <scene sceneID="tne-QT-ifu">
             <objects>
                 <viewController id="BYZ-38-t0r" customClass="MainViewController" customModule="MedImage" customModuleProvider="target" sceneMemberID="viewController">
@@ -37,7 +37,7 @@
                             <constraint firstItem="jtJ-Xj-XKP" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="20" id="pyk-CH-NAn"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="Your folders" largeTitleDisplayMode="always" id="UPQ-HL-AQM"/>
+                    <navigationItem key="navigationItem" title="Your medical folders" largeTitleDisplayMode="always" id="UPQ-HL-AQM"/>
                     <connections>
                         <outlet property="collectionView" destination="jtJ-Xj-XKP" id="1bp-lH-nbT"/>
                         <segue destination="Akp-oP-kuH" kind="show" id="t3y-Dn-eh6"/>
