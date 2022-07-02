@@ -80,6 +80,7 @@ class NewViewController: UIViewController, UITextFieldDelegate, UITextViewDelega
     @IBAction func saveImage(_ sender: Any) {
         let date = datePicker.date
        weak var vc = storyboard?.instantiateViewController(withIdentifier: "DocumentsViewController") as? DocumentsViewController
+
         guard let title = titleTextField.text, !title.isEmpty else {
             let acTitle = UIAlertController(title: "No title!", message: "Please add a title and continue", preferredStyle: .alert)
             acTitle.addAction(UIAlertAction(title: "OK", style: .cancel))
@@ -87,6 +88,9 @@ class NewViewController: UIViewController, UITextFieldDelegate, UITextViewDelega
             return
         }
         guard let path = imgUUID else {
+            let acTitle = UIAlertController(title: "No image!", message: "Please add an image and continue", preferredStyle: .alert)
+            acTitle.addAction(UIAlertAction(title: "OK", style: .cancel))
+            present(acTitle, animated: true)
             return
         }
         let newImage = returnImage(date: date, timestamp: Date(), name: title, uuid: path, description: descriptionTextView.text, folder: Fetched.folder!)

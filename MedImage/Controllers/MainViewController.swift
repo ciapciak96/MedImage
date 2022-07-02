@@ -229,7 +229,6 @@ extension MainViewController: UICollectionViewDelegate, UICollectionViewDataSour
         if isEditing {
             if let cell = collectionView.cellForItem(at: indexPath) as? FolderCell {
                 cell.backgroundColor = .systemGray6
-//                cell.layer.shadowOpacity = 0.3
                 }
         }
     }
