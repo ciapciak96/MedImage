@@ -147,7 +147,6 @@ class MainViewController: UIViewController {
             trashButton.isEnabled = false
         }
     }
-
 }
 
 extension MainViewController: UICollectionViewDelegate, UICollectionViewDataSource {
@@ -169,7 +168,6 @@ extension MainViewController: UICollectionViewDelegate, UICollectionViewDataSour
             cell.isInEditingMode = editing
             cell.backgroundColor = .cyan
         }
-       
         collectionView.reloadData()
     }
     
@@ -178,12 +176,7 @@ extension MainViewController: UICollectionViewDelegate, UICollectionViewDataSour
         
         cell.backgroundColor = .systemGray6
         cell.layer.cornerRadius = 10
-        
-//        cell.layer.shadowRadius = 10
-//        cell.layer.shadowOffset = CGSize(width: 5, height: 5)
-//        cell.layer.shadowColor = UIColor.systemGray.cgColor
-//        cell.layer.shadowOpacity = 0.3
-        
+
         cell.layer.masksToBounds = false
         
         cell.isInEditingMode = isEditing
@@ -232,5 +225,4 @@ extension MainViewController: UICollectionViewDelegate, UICollectionViewDataSour
                 }
         }
     }
-    
 }

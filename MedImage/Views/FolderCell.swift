@@ -13,7 +13,6 @@ class FolderCell: UICollectionViewCell {
     
     var isInEditingMode = false 
 
-    
      let folderName: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -34,13 +33,6 @@ class FolderCell: UICollectionViewCell {
         return image
     }()
     
-//    let checkmarkLabel: UILabel = {
-//        let checkmark = UILabel()
-//        checkmark.text = "✔"
-//        checkmark
-//        return checkmark
-//    }()
-    
     override init(frame: CGRect) {
         super.init(frame: frame)
         addSubViewsAndLayout()
@@ -49,9 +41,7 @@ class FolderCell: UICollectionViewCell {
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
-    
-    
+
     func addSubViewsAndLayout() {
         contentView.addSubview(folderName)
         contentView.addSubview(folderImage)

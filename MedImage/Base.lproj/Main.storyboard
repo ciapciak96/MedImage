@@ -260,14 +260,14 @@
             <objects>
                 <viewController storyboardIdentifier="PreviewViewController" id="nzi-3m-ImI" customClass="PreviewViewController" customModule="MedImage" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="peU-pD-tdF">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="1200"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="1600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hvN-0I-KGk">
-                                <rect key="frame" x="0.0" y="88" width="414" height="1112"/>
+                                <rect key="frame" x="0.0" y="88" width="414" height="1512"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Dfu-pF-dte">
-                                        <rect key="frame" x="0.0" y="0.0" width="414" height="940"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="414" height="1150"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="J9I-rn-rAx">
                                                 <rect key="frame" x="168" y="25" width="42" height="21"/>
@@ -305,7 +305,7 @@
                                             </label>
                                         </subviews>
                                         <constraints>
-                                            <constraint firstAttribute="height" constant="940" id="9BV-XZ-NlS"/>
+                                            <constraint firstAttribute="height" constant="1150" id="9BV-XZ-NlS"/>
                                         </constraints>
                                     </view>
                                 </subviews>
@@ -328,7 +328,7 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" largeTitleDisplayMode="never" id="17K-K2-gIY"/>
-                    <size key="freeformSize" width="414" height="1200"/>
+                    <size key="freeformSize" width="414" height="1600"/>
                     <connections>
                         <outlet property="contentView" destination="Dfu-pF-dte" id="jEG-Vj-I7c"/>
                         <outlet property="dateLabel" destination="4TS-BO-dW1" id="Slc-Al-nmD"/>

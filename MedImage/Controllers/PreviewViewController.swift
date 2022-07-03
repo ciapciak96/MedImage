@@ -29,7 +29,7 @@ class PreviewViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         
         hideKeyboardWhenTapped()
         setDateLabel()
@@ -76,17 +76,15 @@ class PreviewViewController: UIViewController {
         titleLabel.font = UIFont.systemFont(ofSize: 25, weight: .heavy)
         titleLabel.textColor = UIColor.systemPink
         titleLabel.numberOfLines = 0
-        
     }
     
     func setPreviewImageView() {
         previewImageView.translatesAutoresizingMaskIntoConstraints = false
 
         previewImageView.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 15).isActive = true
-        previewImageView.widthAnchor.constraint(equalTo: contentView.widthAnchor, multiplier: 0.8).isActive = true
-        previewImageView.heightAnchor.constraint(equalTo: contentView.heightAnchor, multiplier: 0.5).isActive = true
+        previewImageView.widthAnchor.constraint(equalTo: contentView.widthAnchor, multiplier: 0.9).isActive = true
+        previewImageView.heightAnchor.constraint(equalTo: contentView.heightAnchor, multiplier: 0.65).isActive = true
         previewImageView.centerXAnchor.constraint(equalTo: contentView.centerXAnchor).isActive = true
-  
     }
     
     func setDateLabel() {
@@ -104,8 +102,6 @@ class PreviewViewController: UIViewController {
         
         dateLabel.topAnchor.constraint(equalTo: previewImageView.bottomAnchor, constant: 30).isActive = true
         dateLabel.leftAnchor.constraint(equalTo: contentView.leftAnchor, constant: 25).isActive = true
-        
-        
     }
     
     func setDescriptionLabelandTextView() {
@@ -125,7 +121,7 @@ class PreviewViewController: UIViewController {
         descriptionTextView.topAnchor.constraint(equalTo: descriptionLabel.bottomAnchor, constant: 5).isActive = true
         descriptionTextView.rightAnchor.constraint(equalTo: contentView.rightAnchor, constant: -25).isActive = true
         descriptionTextView.leftAnchor.constraint(equalTo: contentView.leftAnchor, constant: 25).isActive = true
-        descriptionTextView.heightAnchor.constraint(equalTo: contentView.heightAnchor, multiplier: 0.2).isActive = true
+        descriptionTextView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -5).isActive = true
     }
     
     func renameConfirm(_ name: String) {
@@ -149,7 +145,8 @@ class PreviewViewController: UIViewController {
         ac.addAction(UIAlertAction(title: "Cancel", style: .cancel))
         ac.addAction(newName)
         
-        present(ac, animated: true)    }
+        present(ac, animated: true)
+    }
     
     
     @objc func sharePicture() {

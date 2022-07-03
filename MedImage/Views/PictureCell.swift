@@ -68,7 +68,6 @@ class PictureCell: UITableViewCell {
         documentName.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 20).isActive = true
         documentName.leftAnchor.constraint(equalTo: documentImageView.rightAnchor, constant: 20).isActive = true
         documentName.rightAnchor.constraint(equalTo: contentView.rightAnchor, constant: -10).isActive = true
-        
     }
     
     func setDateLabel() {
@@ -77,5 +76,4 @@ class PictureCell: UITableViewCell {
         dateLabel.topAnchor.constraint(equalTo: documentName.bottomAnchor, constant: 10).isActive = true
         dateLabel.leftAnchor.constraint(equalTo: documentImageView.rightAnchor, constant: 20).isActive = true
     }
-    
-    }
+}

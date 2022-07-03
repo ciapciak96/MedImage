@@ -34,7 +34,6 @@ class Fetched {
         }
         completion(image)
     }
-    
 }
 
 

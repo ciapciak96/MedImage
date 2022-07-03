@@ -60,7 +60,7 @@ class NewViewController: UIViewController, UITextFieldDelegate, UITextViewDelega
         let picker = UIImagePickerController()
         if UIImagePickerController.isSourceTypeAvailable(.camera) {
             picker.sourceType = .camera
-            picker.allowsEditing = true
+            picker.allowsEditing = false
             picker.delegate = self
             present(picker, animated: true)
         } else {

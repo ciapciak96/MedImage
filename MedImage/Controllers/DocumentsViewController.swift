@@ -134,7 +134,6 @@ extension DocumentsViewController: UITableViewDelegate, UITableViewDataSource {
         //vc.titleLabel.text = Fetched.filteredData[indexPath.row].name
 
         tableView.deselectRow(at: indexPath, animated: true)
-    
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -185,6 +184,5 @@ extension DocumentsViewController: UISearchBarDelegate {
     
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         searchBar.endEditing(true)
-    }
-    
+    }    
 }
