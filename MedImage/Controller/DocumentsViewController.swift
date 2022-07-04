@@ -30,19 +30,11 @@ class DocumentsViewController: UIViewController {
         Fetched.filteredPictures = []
         Fetched.fetchedPictures = []
         
-        searchBar.searchBarStyle = UISearchBar.Style.default
-        searchBar.placeholder = " Search..."
-        searchBar.sizeToFit()
-        searchBar.isTranslucent = false
-        searchBar.backgroundColor = .systemBackground
         searchBar.delegate = self
         
         documentsTableView.delegate = self
         documentsTableView.dataSource = self
-        documentsTableView.separatorStyle = .none
-        searchBar.delegate = self
-    
-        documentsTableView.tableHeaderView = searchBar
+ 
         documentsTableView.register(PictureCell.self, forCellReuseIdentifier: "PictureCell")
         
         sortButton = UIBarButtonItem(title: "Sort by date", style: .done, target: self, action: #selector(sortByDate))
@@ -50,20 +42,21 @@ class DocumentsViewController: UIViewController {
         navigationItem.rightBarButtonItems = [UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addPicture)), sortButton!]
 
         setTableView()
+        setSearchBar()
         
         DispatchQueue.global().async {
             for picture in Fetched.pictures {
                 Fetched.fetchImagesFromDisk(fileName: picture.photo!) { image in
                     Fetched.fetchedPictures.append(image)
                     Fetched.filteredPictures.append(image)
+                }
             }
         }
     }
-        
-    }
-    
     
     func setTableView() {
+        documentsTableView.tableHeaderView = searchBar
+        
         documentsTableView.translatesAutoresizingMaskIntoConstraints = false
         documentsTableView.topAnchor.constraint(equalTo: view.layoutMarginsGuide.topAnchor).isActive = true
         documentsTableView.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
@@ -73,8 +66,16 @@ class DocumentsViewController: UIViewController {
         documentsTableView.backgroundColor = .clear
     }
     
+    func setSearchBar() {
+        searchBar.searchBarStyle = UISearchBar.Style.default
+        searchBar.placeholder = " Search..."
+        searchBar.sizeToFit()
+        searchBar.isTranslucent = false
+        searchBar.backgroundColor = .systemBackground
+    }
     
-  
+    
+    //OBJ-C FUNCTIONS
     
     @objc func addPicture() {
         let vc = storyboard?.instantiateViewController(withIdentifier: "NewViewController") as! NewViewController
@@ -104,10 +105,11 @@ class DocumentsViewController: UIViewController {
                 Fetched.filteredPictures.append(image)
             }
         }
-
         documentsTableView.reloadData()
     }
 }
+
+
 
 extension DocumentsViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -117,7 +119,8 @@ extension DocumentsViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = documentsTableView.dequeueReusableCell(withIdentifier: "PictureCell", for: indexPath) as! PictureCell
         
-        cell.documentImageView.image = Fetched.filteredPictures[indexPath.row]
+        let thumbnail = resizedImage(sourceImage: Fetched.filteredPictures[indexPath.row], scaledToWidth: 350)
+        cell.documentImageView.image = thumbnail
         let dateFormatter = DateFormatter()
         dateFormatter.dateStyle = .medium
         let dateString = dateFormatter.string(from: Fetched.filteredData[indexPath.row].date!)
@@ -130,8 +133,8 @@ extension DocumentsViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let vc = storyboard?.instantiateViewController(withIdentifier: "PreviewViewController") as! PreviewViewController
         navigationController?.pushViewController(vc, animated: true)
+        print(Fetched.filteredData[indexPath.row])
         vc.selectedImage = Fetched.filteredData[indexPath.row]
-        //vc.titleLabel.text = Fetched.filteredData[indexPath.row].name
 
         tableView.deselectRow(at: indexPath, animated: true)
     }
@@ -146,11 +149,13 @@ extension DocumentsViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
-            
             context.delete(Fetched.filteredData[indexPath.row])
+            
+            let index = Fetched.pictures.removeFirst(object: Fetched.filteredData[indexPath.row])
+            Fetched.fetchedPictures.remove(at: index!)
+            Fetched.filteredPictures.remove(at: indexPath.row)
             Fetched.filteredData.remove(at: indexPath.row)
             tableView.deleteRows(at: [indexPath], with: .automatic)
-
             do {
                 try context.save()
             } catch {
@@ -169,8 +174,12 @@ extension DocumentsViewController: UISearchBarDelegate {
         if searchText == "" {
             Fetched.filteredData = Fetched.pictures
             Fetched.filteredPictures = Fetched.fetchedPictures
+            sorted = false
+            sortButton!.title = "Sort by date"
         } else {
             for imageObject in Fetched.pictures {
+                sorted = false
+                sortButton!.title = "Sort by date"
                 if imageObject.name!.lowercased().starts(with: searchText.lowercased()) {
                     Fetched.filteredData.append(imageObject)
                     Fetched.fetchImagesFromDisk(fileName: imageObject.photo!) { image in

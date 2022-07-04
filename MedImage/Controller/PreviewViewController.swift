@@ -30,7 +30,6 @@ class PreviewViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        
         hideKeyboardWhenTapped()
         setDateLabel()
         setPreviewImageView()
@@ -83,7 +82,7 @@ class PreviewViewController: UIViewController {
 
         previewImageView.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 15).isActive = true
         previewImageView.widthAnchor.constraint(equalTo: contentView.widthAnchor, multiplier: 0.9).isActive = true
-        previewImageView.heightAnchor.constraint(equalTo: contentView.heightAnchor, multiplier: 0.65).isActive = true
+        previewImageView.heightAnchor.constraint(equalTo: contentView.heightAnchor, multiplier: 0.6).isActive = true
         previewImageView.centerXAnchor.constraint(equalTo: contentView.centerXAnchor).isActive = true
     }
     
@@ -134,6 +133,14 @@ class PreviewViewController: UIViewController {
         }
     }
     
+    func registerForKeyboardNotifications() {
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWasShown(_:)), name: UIResponder.keyboardDidShowNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillBeHidden(_:)), name: UIResponder.keyboardWillHideNotification, object: nil)
+    }
+
+    
+    //OBJ-C FUNCTIONS
+    
     @objc func renameImage() {
         let ac = UIAlertController(title: "Rename document", message: nil, preferredStyle: .alert)
         ac.addTextField()
@@ -148,7 +155,6 @@ class PreviewViewController: UIViewController {
         present(ac, animated: true)
     }
     
-    
     @objc func sharePicture() {
         guard let image = previewImageView.image?.jpegData(compressionQuality: 0.8) else {
             return
@@ -156,11 +162,6 @@ class PreviewViewController: UIViewController {
         let vc = UIActivityViewController(activityItems: [image], applicationActivities: [])
         vc.popoverPresentationController?.barButtonItem = navigationItem.rightBarButtonItem
         present(vc, animated: true)
-    }
-    
-    func registerForKeyboardNotifications() {
-        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWasShown(_:)), name: UIResponder.keyboardDidShowNotification, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillBeHidden(_:)), name: UIResponder.keyboardWillHideNotification, object: nil)
     }
     
     @objc func keyboardWasShown(_ notification: NSNotification) {

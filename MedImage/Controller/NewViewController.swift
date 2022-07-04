@@ -24,7 +24,6 @@ class NewViewController: UIViewController, UITextFieldDelegate, UITextViewDelega
     @IBOutlet weak var saveButton: UIButton!
     @IBOutlet weak var datePicker: UIDatePicker!
     
-
     let dateFormatter = DateFormatter()
     var date: Date?
     var imgUUID: String?
@@ -36,8 +35,8 @@ class NewViewController: UIViewController, UITextFieldDelegate, UITextViewDelega
         
         navigationController?.navigationBar.prefersLargeTitles = true
         navigationItem.largeTitleDisplayMode =  .always
-        
     }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         registerForKeyboardNotifications()
@@ -104,8 +103,10 @@ class NewViewController: UIViewController, UITextFieldDelegate, UITextViewDelega
         vc?.documentsTableView = Fetched.globalTableView
 
         Fetched.filteredData.insert(newImage, at: 0)
+        Fetched.pictures.insert(newImage, at: 0)
         Fetched.fetchImagesFromDisk(fileName: newImage.photo!) { image in
             Fetched.filteredPictures.insert(image, at: 0)
+            Fetched.fetchedPictures.insert(image, at: 0)
         }
 
         vc?.documentsTableView.beginUpdates()
@@ -173,7 +174,6 @@ class NewViewController: UIViewController, UITextFieldDelegate, UITextViewDelega
     func setImagePreview() {
         imagePreview.translatesAutoresizingMaskIntoConstraints = false
 
-        
         imagePreview.image = UIImage(systemName: "doc")?.withTintColor(.systemGray5, renderingMode: .alwaysOriginal)
 
         imagePreview.centerXAnchor.constraint(equalTo: contentView.centerXAnchor).isActive = true
@@ -259,7 +259,6 @@ class NewViewController: UIViewController, UITextFieldDelegate, UITextViewDelega
     }
     
     func setDateButtonAndLabel() {
-      
         dateLabel.translatesAutoresizingMaskIntoConstraints = false
         
         dateLabel.text = "Set date"
@@ -289,6 +288,10 @@ class NewViewController: UIViewController, UITextFieldDelegate, UITextViewDelega
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillBeHidden(_:)), name: UIResponder.keyboardWillHideNotification, object: nil)
     }
     
+    
+    
+    //OBJ-C FUNCTIONS
+    
     @objc func keyboardWasShown(_ notification: NSNotification) {
         guard let info = notification.userInfo, let keyboardFrameValue = info[UIResponder.keyboardFrameBeginUserInfoKey] as? NSValue else {
             return
@@ -307,6 +310,8 @@ class NewViewController: UIViewController, UITextFieldDelegate, UITextViewDelega
         scrollView.scrollIndicatorInsets = contentInsets
     }
 }
+
+
 
 extension UIViewController {
     func hideKeyboardWhenTapped() {
