@@ -1,9 +1,9 @@
 
 # MedImage App
-An app where you can keep all your medical documents in form of pictures or screenshots. The documents are kept in user-made folders, that can be deleted if needed. All data saved with help of CoreData.
+An app where you can keep all your medical documents in form of pictures or screenshots. The documents are kept in user-made folders that can be later deleted if needed. All data is saved with a help of CoreData.
 
 Uploaded pictures can either be taken directly by opening a camera in the app, or uploaded from phone's photo library.
-Pictures are named, can be described at the point of document creation or later in the detailed view screen, as well as renamed later in the same detailed view screen. User also sets the date of when the medical document was made, which allows them to easily navigate through their documents and let's them e.g. compare different tests' results.
+Pictures are named, can be described at the point of document creation or later in the detailed view screen, as well as renamed later in the same detailed view screen. User also sets the date of when the medical document was made, which allows them to easily navigate through their documents and lets them e.g. compare different tests' results.
 Detail view screen also allows to rename the document and preview it in a bigger size.
 
 Thumbnails in the list view are sized down by keeping the aspect radio of the original image, so the app can take significantly less memory when running.
