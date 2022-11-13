@@ -235,6 +235,8 @@ class NewViewController: UIViewController, UITextFieldDelegate, UITextViewDelega
         titleTextField.placeholder = "Enter title here"
         titleTextField.backgroundColor = UIColor(named: "mainReversed")
         titleTextField.layer.cornerRadius = 5
+        titleTextField.layer.masksToBounds = true
+        titleTextField.layer.borderColor = UIColor.systemGray6.cgColor
         
         titleTextField.rightAnchor.constraint(equalTo: contentView.rightAnchor, constant: -25).isActive = true
         titleTextField.leftAnchor.constraint(equalTo: contentView.leftAnchor, constant: 25).isActive = true
