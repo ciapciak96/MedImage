@@ -186,19 +186,19 @@ class NewViewController: UIViewController, UITextFieldDelegate, UITextViewDelega
         libraryButton.translatesAutoresizingMaskIntoConstraints = false
         saveButton.translatesAutoresizingMaskIntoConstraints = false
 
-        cameraButton.tintColor = UIColor(named: "mainColor")?.withAlphaComponent(0.6)
+        cameraButton.tintColor = UIColor(named: "mainColor")
         cameraButton.layer.cornerRadius = 10
         cameraButton.backgroundColor = .systemGray5
         
         cameraButton.topAnchor.constraint(equalTo: imagePreview.bottomAnchor, constant: 30).isActive = true
-        cameraButton.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 20).isActive = true
+        cameraButton.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 38).isActive = true
 
-        libraryButton.tintColor = UIColor(named: "mainColor")?.withAlphaComponent(0.6)
+        libraryButton.tintColor = UIColor(named: "mainColor")
         libraryButton.layer.cornerRadius = 10
         libraryButton.backgroundColor = .systemGray5
         
         libraryButton.topAnchor.constraint(equalTo: imagePreview.bottomAnchor, constant: 30).isActive = true
-        libraryButton.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -20).isActive = true
+        libraryButton.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -38).isActive = true
 
         saveButton.tintColor = .systemBackground
         saveButton.layer.cornerRadius = 10

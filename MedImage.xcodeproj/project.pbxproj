@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		E401B04B2912ED79008E88C4 /* OnboardingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E401B04A2912ED79008E88C4 /* OnboardingViewController.swift */; };
 		E401B04D2912F9DC008E88C4 /* OnboardingCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E401B04C2912F9DC008E88C4 /* OnboardingCollectionViewCell.swift */; };
+		E428A815292132B70092BF88 /* ZoomedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E428A814292132B70092BF88 /* ZoomedViewController.swift */; };
+		E428A81729256CCA0092BF88 /* ImageZoomView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E428A81629256CCA0092BF88 /* ImageZoomView.swift */; };
 		E4321079286A9EEB0018FE85 /* NewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4321078286A9EEB0018FE85 /* NewViewController.swift */; };
 		E456A306286512F8007236C3 /* Image+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = E456A302286512F8007236C3 /* Image+CoreDataClass.swift */; };
 		E456A307286512F8007236C3 /* Image+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = E456A303286512F8007236C3 /* Image+CoreDataProperties.swift */; };
@@ -34,6 +36,8 @@
 /* Begin PBXFileReference section */
 		E401B04A2912ED79008E88C4 /* OnboardingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingViewController.swift; sourceTree = "<group>"; };
 		E401B04C2912F9DC008E88C4 /* OnboardingCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingCollectionViewCell.swift; sourceTree = "<group>"; };
+		E428A814292132B70092BF88 /* ZoomedViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZoomedViewController.swift; sourceTree = "<group>"; };
+		E428A81629256CCA0092BF88 /* ImageZoomView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageZoomView.swift; sourceTree = "<group>"; };
 		E4321078286A9EEB0018FE85 /* NewViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewViewController.swift; sourceTree = "<group>"; };
 		E456A302286512F8007236C3 /* Image+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Image+CoreDataClass.swift"; sourceTree = "<group>"; };
 		E456A303286512F8007236C3 /* Image+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Image+CoreDataProperties.swift"; sourceTree = "<group>"; };
@@ -84,11 +88,12 @@
 		E456A30A28651422007236C3 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				E401B04A2912ED79008E88C4 /* OnboardingViewController.swift */,
 				E4B1FD2B285BC97F0067218E /* MainViewController.swift */,
 				E4AA349D285BCCA900954F0A /* DocumentsViewController.swift */,
-				E4AA349F285BCCC300954F0A /* PreviewViewController.swift */,
 				E4321078286A9EEB0018FE85 /* NewViewController.swift */,
-				E401B04A2912ED79008E88C4 /* OnboardingViewController.swift */,
+				E4AA349F285BCCC300954F0A /* PreviewViewController.swift */,
+				E428A814292132B70092BF88 /* ZoomedViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -96,6 +101,7 @@
 		E456A30B2865144E007236C3 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				E428A81629256CCA0092BF88 /* ImageZoomView.swift */,
 				E4C2EA86286375A70002AB95 /* FolderCell.swift */,
 				E4C2EA88286375CB0002AB95 /* PictureCell.swift */,
 				E401B04C2912F9DC008E88C4 /* OnboardingCollectionViewCell.swift */,
@@ -226,10 +232,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E428A815292132B70092BF88 /* ZoomedViewController.swift in Sources */,
 				E4A7D7CC28732AF8009E5A3E /* ArrayExtension.swift in Sources */,
 				E4AA349E285BCCA900954F0A /* DocumentsViewController.swift in Sources */,
 				E4B1FD2C285BC97F0067218E /* MainViewController.swift in Sources */,
 				E401B04B2912ED79008E88C4 /* OnboardingViewController.swift in Sources */,
+				E428A81729256CCA0092BF88 /* ImageZoomView.swift in Sources */,
 				E4B1FD28285BC97F0067218E /* AppDelegate.swift in Sources */,
 				E401B04D2912F9DC008E88C4 /* OnboardingCollectionViewCell.swift in Sources */,
 				E4C332A228685327001A3CB0 /* FetchedClass.swift in Sources */,
@@ -387,7 +395,7 @@
 		E4B1FD3C285BC9800067218E /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-1";
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon1;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
@@ -417,7 +425,7 @@
 		E4B1FD3D285BC9800067218E /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-1";
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon1;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;

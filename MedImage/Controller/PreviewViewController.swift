@@ -58,6 +58,15 @@ class PreviewViewController: UIViewController {
             print(error.localizedDescription)
         }
     }
+    @IBAction func imageClicked(_ sender: Any) {
+        print("its working")
+        let vc = storyboard?.instantiateViewController(withIdentifier: "ZoomedViewController") as! ZoomedViewController
+        vc.modalPresentationStyle = .fullScreen
+        vc.modalTransitionStyle = .crossDissolve
+        vc.zoomedImage = previewImageView.image
+        present(vc, animated: true)
+        
+    }
     
     func setBarButtons() {
         renameButton = UIBarButtonItem(title: "Rename", style: .done, target: self, action: #selector(renameImage))
@@ -78,11 +87,14 @@ class PreviewViewController: UIViewController {
     }
     
     func setPreviewImageView() {
+        
+        previewImageView.isUserInteractionEnabled = true
+        
         previewImageView.translatesAutoresizingMaskIntoConstraints = false
 
         previewImageView.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 15).isActive = true
         previewImageView.widthAnchor.constraint(equalTo: contentView.widthAnchor, multiplier: 0.9).isActive = true
-        previewImageView.heightAnchor.constraint(equalTo: contentView.heightAnchor, multiplier: 0.6).isActive = true
+        previewImageView.heightAnchor.constraint(equalTo: contentView.heightAnchor, multiplier: 0.4).isActive = true
         previewImageView.centerXAnchor.constraint(equalTo: contentView.centerXAnchor).isActive = true
     }
     

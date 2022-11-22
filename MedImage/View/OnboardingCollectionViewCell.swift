@@ -20,6 +20,7 @@ class OnboardingCollectionViewCell: UICollectionViewCell {
         titleLabel.text = slide.title
         instructionsTextView.text = slide.description
         instructionsImageView.image = slide.image
+        instructionsImageView.contentMode = .scaleAspectFit
     }
     
     

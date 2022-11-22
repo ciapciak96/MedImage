@@ -25,6 +25,7 @@ class OnboardingViewController: UIViewController {
                 skipButton.isHidden = true
                 nextButton.setTitleColor(UIColor(named: "mainReversed"), for: .normal)
                 nextButton.backgroundColor = UIColor.systemPink
+                nextButton.layer.cornerRadius = 10
               
             } else {
                 nextButton.setTitle("Next", for: .normal)
@@ -35,7 +36,8 @@ class OnboardingViewController: UIViewController {
         }
     }
     
-    var slides: [OnboardingSlide] = [OnboardingSlide(title: "Test1", description: "Testing description1", image: UIImage(named: "Shot1")!), OnboardingSlide(title: "Test2", description: "Testing description2", image: UIImage(named: "Shot2")!), OnboardingSlide(title: "Test3", description: "Testing description2", image: UIImage(named: "Shot3")!)]
+    var slides: [OnboardingSlide] = [OnboardingSlide(title: "Welcome to MedImage!", description: "First, let us introduce you to the app and how to use it, step by step", image: UIImage(named: "Pink")), OnboardingSlide(title: "Starting up", description: "You can make custom folders just for your needs, to store different images in different spaces, named just the way you find it right", image: UIImage(named: "Screen1")!), OnboardingSlide(title: "Adding new images", description: "You can name, describe and set a date for each image you add, to properly store and organize your documents inside your folder", image: UIImage(named: "Screen3")!), OnboardingSlide(title: "Viewing your document", description: "You can change the description, rename your image, send it outside directly from the app and zoom in by clicking the image", image: UIImage(named: "Screen2"))]
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -44,7 +46,6 @@ class OnboardingViewController: UIViewController {
         onboardingCollectionView.delegate = self
 
         setNextButton()
-
     }
   
     @IBAction func nextButtonPressed(_ sender: UIButton) {
