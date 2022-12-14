@@ -63,8 +63,8 @@ class NewViewController: UIViewController, UITextFieldDelegate, UITextViewDelega
             picker.delegate = self
             present(picker, animated: true)
         } else {
-            let ac = UIAlertController(title: "No camera found", message: nil, preferredStyle: .alert)
-            ac.addAction(UIAlertAction(title: "OK", style: .cancel))
+            let ac = UIAlertController(title: "No camera found".localized(), message: nil, preferredStyle: .alert)
+            ac.addAction(UIAlertAction(title: "OK".localized(), style: .cancel))
             present(ac, animated: true)
         }
     }
@@ -81,13 +81,13 @@ class NewViewController: UIViewController, UITextFieldDelegate, UITextViewDelega
        weak var vc = storyboard?.instantiateViewController(withIdentifier: "DocumentsViewController") as? DocumentsViewController
 
         guard let title = titleTextField.text, !title.isEmpty else {
-            let acTitle = UIAlertController(title: "No title!", message: "Please add a title and continue", preferredStyle: .alert)
+            let acTitle = UIAlertController(title: "No title!".localized(), message: "Please add a title and continue".localized(), preferredStyle: .alert)
             acTitle.addAction(UIAlertAction(title: "OK", style: .cancel))
             present(acTitle, animated: true)
             return
         }
         guard let path = imgUUID else {
-            let acTitle = UIAlertController(title: "No image!", message: "Please add an image and continue", preferredStyle: .alert)
+            let acTitle = UIAlertController(title: "No image!".localized(), message: "Please add an image and continue".localized(), preferredStyle: .alert)
             acTitle.addAction(UIAlertAction(title: "OK", style: .cancel))
             present(acTitle, animated: true)
             return
@@ -129,7 +129,7 @@ class NewViewController: UIViewController, UITextFieldDelegate, UITextViewDelega
     
     func textViewDidEndEditing(_ textView: UITextView) {
         if textView.text.isEmpty {
-            textView.text = "Enter description here"
+            textView.text = "Enter description here".localized()
             textView.textColor = UIColor.systemGray3
         }
     }
@@ -162,7 +162,7 @@ class NewViewController: UIViewController, UITextFieldDelegate, UITextViewDelega
     func setTopLabel() {
         topLabel.translatesAutoresizingMaskIntoConstraints = false
         
-        topLabel.text = "Add new document"
+        topLabel.text = "Add new document".localized()
         topLabel.font = UIFont.systemFont(ofSize: 30, weight: .bold)
         topLabel.textColor = .systemPink
         
@@ -174,7 +174,7 @@ class NewViewController: UIViewController, UITextFieldDelegate, UITextViewDelega
     func setImagePreview() {
         imagePreview.translatesAutoresizingMaskIntoConstraints = false
 
-        imagePreview.image = UIImage(systemName: "doc")?.withTintColor(.systemGray5, renderingMode: .alwaysOriginal)
+        imagePreview.image = UIImage(systemName: "doc.text.fill")?.withTintColor(.systemGray5, renderingMode: .alwaysOriginal)
 
         imagePreview.centerXAnchor.constraint(equalTo: contentView.centerXAnchor).isActive = true
         imagePreview.widthAnchor.constraint(equalTo: contentView.widthAnchor, multiplier: 0.6).isActive = true
@@ -214,14 +214,14 @@ class NewViewController: UIViewController, UITextFieldDelegate, UITextViewDelega
         titleLabel.translatesAutoresizingMaskIntoConstraints = false
         descriptionLabel.translatesAutoresizingMaskIntoConstraints = false
         
-        titleLabel.text = "Title"
+        titleLabel.text = "Title".localized()
         titleLabel.font = UIFont.systemFont(ofSize: 18, weight: .medium)
         titleLabel.textColor = UIColor(named: "mainColor")
 
         titleLabel.leftAnchor.constraint(equalTo: contentView.leftAnchor, constant: 25).isActive = true
         titleLabel.topAnchor.constraint(equalTo: cameraButton.bottomAnchor, constant: 60).isActive = true
 
-        descriptionLabel.text = "Description (optional)"
+        descriptionLabel.text = "Description (optional)".localized()
         descriptionLabel.font = UIFont.systemFont(ofSize: 18, weight: .medium)
         descriptionLabel.textColor = UIColor(named: "mainColor")
         
@@ -232,7 +232,7 @@ class NewViewController: UIViewController, UITextFieldDelegate, UITextViewDelega
     func setTextField() {
         titleTextField.translatesAutoresizingMaskIntoConstraints = false
         
-        titleTextField.placeholder = "Enter title here"
+        titleTextField.placeholder = "Enter title here".localized()
         titleTextField.backgroundColor = UIColor(named: "mainReversed")
         titleTextField.layer.cornerRadius = 5
         titleTextField.layer.masksToBounds = true
@@ -246,7 +246,7 @@ class NewViewController: UIViewController, UITextFieldDelegate, UITextViewDelega
     func setTextView() {
         descriptionTextView.translatesAutoresizingMaskIntoConstraints = false
         
-        descriptionTextView.text = "Enter description here"
+        descriptionTextView.text = "Enter description here".localized()
         descriptionTextView.textColor = UIColor.systemGray3
 
         descriptionTextView.layer.cornerRadius = 5
@@ -263,7 +263,7 @@ class NewViewController: UIViewController, UITextFieldDelegate, UITextViewDelega
     func setDateButtonAndLabel() {
         dateLabel.translatesAutoresizingMaskIntoConstraints = false
         
-        dateLabel.text = "Set date"
+        dateLabel.text = "Set date".localized()
         dateLabel.font = UIFont.systemFont(ofSize: 18, weight: .medium)
         dateLabel.textColor = UIColor(named: "mainColor")
         

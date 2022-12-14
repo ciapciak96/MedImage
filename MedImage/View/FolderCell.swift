@@ -28,7 +28,7 @@ class FolderCell: UICollectionViewCell {
         image.translatesAutoresizingMaskIntoConstraints = false
         image.layer.cornerRadius = 10
         image.contentMode = .scaleAspectFit
-         image.image = UIImage(systemName: "folder.fill")?.withTintColor(.systemGray2.withAlphaComponent(0.5), renderingMode: .alwaysOriginal)
+        image.image = UIImage(systemName: "folder.fill")?.withTintColor(.systemGray2.withAlphaComponent(0.5), renderingMode: .alwaysOriginal)
         return image
     }()
     

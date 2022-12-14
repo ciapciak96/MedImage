@@ -59,7 +59,6 @@ class PreviewViewController: UIViewController {
         }
     }
     @IBAction func imageClicked(_ sender: Any) {
-        print("its working")
         let vc = storyboard?.instantiateViewController(withIdentifier: "ZoomedViewController") as! ZoomedViewController
         vc.modalPresentationStyle = .fullScreen
         vc.modalTransitionStyle = .crossDissolve
@@ -69,7 +68,7 @@ class PreviewViewController: UIViewController {
     }
     
     func setBarButtons() {
-        renameButton = UIBarButtonItem(title: "Rename", style: .done, target: self, action: #selector(renameImage))
+        renameButton = UIBarButtonItem(title: "Rename".localized(), style: .done, target: self, action: #selector(renameImage))
         sendButton = UIBarButtonItem(barButtonSystemItem: .action, target: self, action: #selector(sharePicture))
         navigationItem.rightBarButtonItems = [sendButton!, renameButton!]
     }
@@ -119,7 +118,7 @@ class PreviewViewController: UIViewController {
         descriptionTextView.translatesAutoresizingMaskIntoConstraints = false
         descriptionLabel.translatesAutoresizingMaskIntoConstraints = false
         
-        descriptionLabel.text = "Description"
+        descriptionLabel.text = "Description".localized()
         descriptionLabel.font = UIFont.systemFont(ofSize: 22, weight: .bold)
         descriptionLabel.textColor = UIColor(named: "mainColor")
         descriptionLabel.leftAnchor.constraint(equalTo: contentView.leftAnchor, constant: 25).isActive = true
@@ -154,14 +153,14 @@ class PreviewViewController: UIViewController {
     //OBJ-C FUNCTIONS
     
     @objc func renameImage() {
-        let ac = UIAlertController(title: "Rename document", message: nil, preferredStyle: .alert)
+        let ac = UIAlertController(title: "Rename document".localized(), message: nil, preferredStyle: .alert)
         ac.addTextField()
         
-        let newName = UIAlertAction(title: "Rename", style: .default) { [weak ac, weak self] _ in
+        let newName = UIAlertAction(title: "Change".localized(), style: .default) { [weak ac, weak self] _ in
             guard let name = ac?.textFields?[0].text else { return }
             self?.renameConfirm(name) }
         
-        ac.addAction(UIAlertAction(title: "Cancel", style: .cancel))
+        ac.addAction(UIAlertAction(title: "Cancel".localized(), style: .cancel))
         ac.addAction(newName)
         
         present(ac, animated: true)

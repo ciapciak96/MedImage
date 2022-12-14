@@ -18,7 +18,11 @@ class OnboardingCollectionViewCell: UICollectionViewCell {
     
     func setup(_ slide: OnboardingSlide) {
         titleLabel.text = slide.title
+        titleLabel.minimumScaleFactor = 0.3
+        titleLabel.numberOfLines = 1
+        titleLabel.adjustsFontSizeToFitWidth = true
         instructionsTextView.text = slide.description
+        instructionsTextView.adjustsFontForContentSizeCategory = true
         instructionsImageView.image = slide.image
         instructionsImageView.contentMode = .scaleAspectFit
     }

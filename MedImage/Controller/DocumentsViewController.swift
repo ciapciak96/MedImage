@@ -37,7 +37,7 @@ class DocumentsViewController: UIViewController {
  
         documentsTableView.register(PictureCell.self, forCellReuseIdentifier: "PictureCell")
         
-        sortButton = UIBarButtonItem(title: "Sort by date", style: .done, target: self, action: #selector(sortByDate))
+        sortButton = UIBarButtonItem(title: "Sort by date".localized(), style: .done, target: self, action: #selector(sortByDate))
 
         navigationItem.rightBarButtonItems = [UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addPicture)), sortButton!]
 
@@ -68,7 +68,7 @@ class DocumentsViewController: UIViewController {
     
     func setSearchBar() {
         searchBar.searchBarStyle = UISearchBar.Style.default
-        searchBar.placeholder = " Search..."
+        searchBar.placeholder = " Search...".localized()
         searchBar.sizeToFit()
         searchBar.isTranslucent = false
         searchBar.backgroundColor = .systemBackground
@@ -91,12 +91,12 @@ class DocumentsViewController: UIViewController {
         if sorted == false {
             Fetched.filteredData = Fetched.filteredData.sorted(by: {
                 $0.date!.compare($1.date!) == .orderedDescending })
-            sortButton.title = "Reset"
+            sortButton.title = "Reset".localized()
         } else {
             Fetched.filteredData = Fetched.filteredData.sorted(by: {
                 $0.timestamp!.compare($1.timestamp!) == .orderedDescending
             })
-            sortButton.title = "Sort by date"
+            sortButton.title = "Sort by date".localized()
         }
         sorted = !sorted
         
@@ -175,11 +175,11 @@ extension DocumentsViewController: UISearchBarDelegate {
             Fetched.filteredData = Fetched.pictures
             Fetched.filteredPictures = Fetched.fetchedPictures
             sorted = false
-            sortButton!.title = "Sort by date"
+            sortButton!.title = "Sort by date".localized()
         } else {
             for imageObject in Fetched.pictures {
                 sorted = false
-                sortButton!.title = "Sort by date"
+                sortButton!.title = "Sort by date".localized()
                 if imageObject.name!.lowercased().starts(with: searchText.lowercased()) {
                     Fetched.filteredData.append(imageObject)
                     Fetched.fetchImagesFromDisk(fileName: imageObject.photo!) { image in

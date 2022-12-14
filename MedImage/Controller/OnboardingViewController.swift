@@ -21,14 +21,14 @@ class OnboardingViewController: UIViewController {
         didSet {
             onboardingPageControl.currentPage = currentPage
             if currentPage == slides.count - 1 {
-                nextButton.setTitle("Get Started", for: .normal)
+                nextButton.setTitle("Get Started".localized(), for: .normal)
                 skipButton.isHidden = true
                 nextButton.setTitleColor(UIColor(named: "mainReversed"), for: .normal)
                 nextButton.backgroundColor = UIColor.systemPink
                 nextButton.layer.cornerRadius = 10
               
             } else {
-                nextButton.setTitle("Next", for: .normal)
+                nextButton.setTitle("Next".localized(), for: .normal)
                 skipButton.isHidden = false
                 nextButton.setTitleColor(.systemPink, for: .normal)
                 nextButton.backgroundColor = .none
@@ -36,7 +36,7 @@ class OnboardingViewController: UIViewController {
         }
     }
     
-    var slides: [OnboardingSlide] = [OnboardingSlide(title: "Welcome to MedImage!", description: "First, let us introduce you to the app and how to use it, step by step", image: UIImage(named: "Pink")), OnboardingSlide(title: "Starting up", description: "You can make custom folders just for your needs, to store different images in different spaces, named just the way you find it right", image: UIImage(named: "Screen1")!), OnboardingSlide(title: "Adding new images", description: "You can name, describe and set a date for each image you add, to properly store and organize your documents inside your folder", image: UIImage(named: "Screen3")!), OnboardingSlide(title: "Viewing your document", description: "You can change the description, rename your image, send it outside directly from the app and zoom in by clicking the image", image: UIImage(named: "Screen2"))]
+    var slides: [OnboardingSlide] = [OnboardingSlide(title: "Welcome to MedImage!".localized(), description: "First, let us introduce you to the app and how to use it, step by step".localized(), image: UIImage(named: "Pink")), OnboardingSlide(title: "Starting up".localized(), description: "You can make custom folders just for your needs, to store different images in different spaces, named just the way you find it right".localized(), image: UIImage(named: "Screen1")!), OnboardingSlide(title: "Adding new images".localized(), description: "You can name, describe and set a date for each image you add, to properly store and organize your documents inside your folder".localized(), image: UIImage(named: "Screen3")!), OnboardingSlide(title: "Viewing your document".localized(), description: "You can change the description, rename your image, send it outside directly from the app and zoom in by clicking the image".localized(), image: UIImage(named: "Screen2"))]
     
     
     override func viewDidLoad() {
@@ -50,10 +50,10 @@ class OnboardingViewController: UIViewController {
   
     @IBAction func nextButtonPressed(_ sender: UIButton) {
         if currentPage == slides.count - 1 {
-            print("Go to the next page")
             let vc = storyboard?.instantiateViewController(withIdentifier: "NavVC") as! UINavigationController
             vc.modalPresentationStyle = .fullScreen
             vc.modalTransitionStyle = .crossDissolve
+            UserDefaults.standard.hasOnboarded = true
             present(vc, animated: true)
             } else {
             currentPage += 1

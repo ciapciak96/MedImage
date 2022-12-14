@@ -114,14 +114,14 @@ class MainViewController: UIViewController {
     }
     
     @objc func addFolder() {
-        let ac = UIAlertController(title: "Create new folder", message: nil, preferredStyle: .alert)
+        let ac = UIAlertController(title: "Create new folder".localized(), message: nil, preferredStyle: .alert)
         ac.addTextField()
         
-        let newName = UIAlertAction(title: "Add", style: .default) { [weak ac, weak self] _ in
+        let newName = UIAlertAction(title: "Add".localized(), style: .default) { [weak ac, weak self] _ in
             guard let name = ac?.textFields?[0].text else { return }
             self?.submit(name) }
         
-        ac.addAction(UIAlertAction(title: "Cancel", style: .cancel))
+        ac.addAction(UIAlertAction(title: "Cancel".localized(), style: .cancel))
         ac.addAction(newName)
         
         present(ac, animated: true)

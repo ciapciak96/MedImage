@@ -1,0 +1,41 @@
+/* 
+  Localizable.strings
+  MedImage
+
+  Created by Vanda S. on 14/12/2022.
+  
+*/
+
+"Get Started" = "Zacznij";
+"Next" = "Dalej";
+"Welcome to MedImage!" = "Witaj w MedImage!";
+"First, let us introduce you to the app and how to use it, step by step" = "Na początku zapoznaj się z aplikacją i tym, jak jej używać, krok po kroku";
+"Starting up" = "Na początku";
+"You can make custom folders just for your needs, to store different images in different spaces, named just the way you find it right" = "Możesz tworzyć własne foldery dostosowane do twoich potrzeb, tak by przechowywać dokumenty w odpowiednio nazwanych folderach";
+"Adding new images" = "Dodawanie nowych zdjęć";
+"You can name, describe and set a date for each image you add, to properly store and organize your documents inside your folder" = "Możesz nazwać, opisać i ustawić datę przy każdym dodanym zdjęciu, tak by odpowiednio przechowywać i uporządkować dokumenty w folderze";
+"Viewing your document" = "Podgląd dokumentu";
+"You can change the description, rename your image, send it outside directly from the app and zoom in by clicking the image" = "Możesz zmienić opis, nazwę bądź wysłać zdjęcie poza aplikację; możesz również je przybliżyć, po kliknięciu na nie";
+"Create new folder" = "Stwórz nowy folder";
+"Add" = "Dodaj";
+"Cancel" = "Anuluj";
+"Sort by date" = "Wg daty";
+" Search..." = " Szukaj...";
+"Reset" = "Resetuj";
+"No camera found" = "Nie wykryto kamery";
+"No title!" = "Brak tytułu!";
+"Please add a title and continue" = "Dodaj tytuł aby kontynuować";
+"No image!" = "Brak zdjęcia!";
+"Please add an image and continue" = "Dodaj zdjęcie aby kontynuować";
+"Enter description here" = "Tu wprowadź opis";
+"Add new document" = "Dodaj nowy dokument";
+"Title" = "Tytuł";
+"Description (optional)" = "Opis (opcjonalnie)";
+"Enter title here" = "Tu wprowadź tytuł";
+"Set date" = "Ustaw datę";
+
+
+"Rename" = "Zmień nazwę";
+"Description" = "Opis";
+"Rename document" = "Zmień nazwę dokumentu";
+"Change" = "Zmień";
