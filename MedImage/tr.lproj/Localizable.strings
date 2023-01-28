@@ -1,0 +1,40 @@
+/* 
+  Localizable.strings
+  MedImage
+
+  Created by Vanda S. on 14/12/2022.
+  
+*/
+"Get Started" = "Başlat";
+"Next" = "Sonraki";
+"Welcome to MedImage!" = "MedImage’e Hoşgeldiniz!";
+"First, let us introduce you to the app and how to use it, step by step" = "Öncelikle, size adım-adım uygulamayı tanıtıp nasıl kullanıldığını gösterelim";
+"Starting up" = "Başlangıç";
+"You can make custom folders just for your needs, to store different images in different spaces, named just the way you find it right" = "Kendinize özel klasörler oluşturup, kendi bulabileceğiniz biçimde adlandırarak çeşitli bölümlerde kaydedebilirsiniz";
+"Adding new images" = "Yeni görseller ekleme";
+"You can name, describe and set a date for each image you add, to properly store and organize your documents inside your folder" = "Klasörünüze kaydettiğiniz her bir görseli saklamak ve düzenlemek için ayrı ayrı adlandırabilir, açıklama ve tarih ekleyebilirsiniz";
+"Viewing your document" = "Belgeniz görüntüleme";
+"You can change the description, rename your image, send it outside directly from the app and zoom in by clicking the image" = "Görselinizi yeniden adlandırabilir, açıklamasını değiştirebilir, uygulamanın dışına aynen gönderebilir ve üzerine tıklayarak yakınlaştırabilirsiniz";
+"Create new folder" = "Yeni klasör oluştur";
+"Add" = "Ekle";
+"Cancel" = "Vazgeç";
+"Sort by date" = "Tarihe göre";
+" Search..." = " Ara...";
+"Reset" = "";
+"No camera found" = "Kamera bulunamadı";
+"No title!" = "Başlık eksik!";
+"Please add a title and continue" = "Bir başlık ekleyerek devam ediniz";
+"No image!" = "Görsel bulunamadı!";
+"Please add an image and continue" = "Bir görsel ekleyerek devam ediniz";
+"Enter description here" = "Açıklamayı buraya yazın";
+"Add new document" = "Yeni belge ekle";
+"Title" = "Başlık";
+"Description (optional)" = "Açıklama (isteğe bağlı)";
+"Enter title here" = "Başlığı buraya yazın";
+"Set date" = "Tarih ekle";
+
+
+"Rename" = "Yeniden adlandır";
+"Description" = "Açıklama";
+"Rename document" = "Yeniden adlandır";
+"Change" = "Değiştir";

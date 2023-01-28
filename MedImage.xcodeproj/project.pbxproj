@@ -51,6 +51,8 @@
 		E456A303286512F8007236C3 /* Image+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Image+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		E456A304286512F8007236C3 /* Folder+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Folder+CoreDataClass.swift"; sourceTree = "<group>"; };
 		E456A305286512F8007236C3 /* Folder+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Folder+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		E47D6254295260E300ED10AB /* tr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = tr; path = tr.lproj/Main.strings; sourceTree = "<group>"; };
+		E47D6255295260E300ED10AB /* tr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = tr; path = tr.lproj/Localizable.strings; sourceTree = "<group>"; };
 		E4A7D7CB28732AF8009E5A3E /* ArrayExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArrayExtension.swift; sourceTree = "<group>"; };
 		E4A7D7CF287377B9009E5A3E /* ResizedImageFunction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResizedImageFunction.swift; sourceTree = "<group>"; };
 		E4AA349D285BCCA900954F0A /* DocumentsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DocumentsViewController.swift; sourceTree = "<group>"; };
@@ -218,6 +220,7 @@
 				en,
 				Base,
 				pl,
+				tr,
 			);
 			mainGroup = E4B1FD1B285BC97F0067218E;
 			productRefGroup = E4B1FD25285BC97F0067218E /* Products */;
@@ -283,6 +286,7 @@
 			children = (
 				E4158A28294A4A2F00F16DEE /* pl */,
 				E4158A2B294A560E00F16DEE /* en */,
+				E47D6255295260E300ED10AB /* tr */,
 			);
 			name = Localizable.strings;
 			sourceTree = "<group>";
@@ -292,6 +296,7 @@
 			children = (
 				E4B1FD2E285BC97F0067218E /* Base */,
 				E4158A24294A4A0600F16DEE /* pl */,
+				E47D6254295260E300ED10AB /* tr */,
 			);
 			name = Main.storyboard;
 			sourceTree = "<group>";

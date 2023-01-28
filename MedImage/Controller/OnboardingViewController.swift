@@ -65,6 +65,7 @@ class OnboardingViewController: UIViewController {
         let vc = storyboard?.instantiateViewController(withIdentifier: "NavVC") as! UINavigationController
         vc.modalPresentationStyle = .fullScreen
         vc.modalTransitionStyle = .crossDissolve
+        UserDefaults.standard.hasOnboarded = true
         present(vc, animated: true)
     }
     

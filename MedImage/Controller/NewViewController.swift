@@ -176,6 +176,7 @@ class NewViewController: UIViewController, UITextFieldDelegate, UITextViewDelega
 
         imagePreview.image = UIImage(systemName: "doc.text.fill")?.withTintColor(.systemGray5, renderingMode: .alwaysOriginal)
 
+
         imagePreview.centerXAnchor.constraint(equalTo: contentView.centerXAnchor).isActive = true
         imagePreview.widthAnchor.constraint(equalTo: contentView.widthAnchor, multiplier: 0.6).isActive = true
         imagePreview.heightAnchor.constraint(equalTo: contentView.heightAnchor, multiplier: 0.30).isActive = true
@@ -186,16 +187,16 @@ class NewViewController: UIViewController, UITextFieldDelegate, UITextViewDelega
         libraryButton.translatesAutoresizingMaskIntoConstraints = false
         saveButton.translatesAutoresizingMaskIntoConstraints = false
 
-        cameraButton.tintColor = UIColor(named: "mainColor")
+        cameraButton.tintColor = UIColor(named: "mainColor")?.withAlphaComponent(0.8)
         cameraButton.layer.cornerRadius = 10
-        cameraButton.backgroundColor = .systemGray5
+        cameraButton.backgroundColor = .quaternarySystemFill
         
         cameraButton.topAnchor.constraint(equalTo: imagePreview.bottomAnchor, constant: 30).isActive = true
         cameraButton.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 38).isActive = true
 
-        libraryButton.tintColor = UIColor(named: "mainColor")
+        libraryButton.tintColor = UIColor(named: "mainColor")?.withAlphaComponent(0.8)
         libraryButton.layer.cornerRadius = 10
-        libraryButton.backgroundColor = .systemGray5
+        libraryButton.backgroundColor = .quaternarySystemFill
         
         libraryButton.topAnchor.constraint(equalTo: imagePreview.bottomAnchor, constant: 30).isActive = true
         libraryButton.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -38).isActive = true
@@ -219,7 +220,7 @@ class NewViewController: UIViewController, UITextFieldDelegate, UITextViewDelega
         titleLabel.textColor = UIColor(named: "mainColor")
 
         titleLabel.leftAnchor.constraint(equalTo: contentView.leftAnchor, constant: 25).isActive = true
-        titleLabel.topAnchor.constraint(equalTo: cameraButton.bottomAnchor, constant: 60).isActive = true
+        titleLabel.topAnchor.constraint(equalTo: cameraButton.bottomAnchor, constant: 50).isActive = true
 
         descriptionLabel.text = "Description (optional)".localized()
         descriptionLabel.font = UIFont.systemFont(ofSize: 18, weight: .medium)
