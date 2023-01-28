@@ -14,6 +14,8 @@ Any document can be deleted easily by swiping the document cell left.
 
 Made in UIKit and with CoreData, with mostly programmatic UI.
 
+The app has been additionally localized in Polish.
+
 
 # Screenshots
 
